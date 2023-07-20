@@ -22,10 +22,5 @@ pipeline {
        sh 'docker images -q --filter=reference=${dockerImageName} | xargs --no-run-if-empty docker rmi -f'
       }
     }
-  stage('docker-compose start') {
-      steps {
-       sh 'docker compose up -d'
-      }
-    }
   }
 }
