@@ -1,5 +1,4 @@
 version: '3.8'
-
 services: 
   api:
     build: .
@@ -20,6 +19,7 @@ services:
     environment:
       - MYSQL_DATABASE=QUINIELAS
       - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
     ports:
       - '3306:3306'
     volumes:
