@@ -5,11 +5,6 @@ AESEncryptBack : Betza20
 
 
 spring:
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/QUINIELAS?jdbcCompliantTruncation=false
-    username: root
-    password: root
   jpa:
     hibernate.ddl-auto: update 
     generate-ddl: true
