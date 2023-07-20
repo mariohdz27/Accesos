@@ -6,7 +6,8 @@ try{
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        git url: 'https://github.com/mariohdz27/Accesos.git'
+        git url: 'https://github.com/mariohdz27/Accesos.git',
+        branch: 'Jenkins'
            
      }
     stage('Build docker') {
@@ -46,7 +47,7 @@ def notifyBuild(String buildStatus = 'STARTED'){
   
   // Email notification
   emailext (
-     to: "admin@gmail.com",
+     to: "mariohdzglez@gmail.com",
      subject: subject_email,
      body: details,
      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
