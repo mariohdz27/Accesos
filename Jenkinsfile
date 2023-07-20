@@ -1,5 +1,8 @@
 pipeline {
-    agent any  
+    agent any
+    tools {
+        jdk "java 17"
+    }  
   environment {
     MAVEN_ARGS=" -e clean install"
     registry = ""
@@ -9,9 +12,9 @@ pipeline {
   stages {
     stage('Build') {
        steps {
-   withMaven(maven: 'mvn') {
+   			withMaven(maven: 'mvn') {
             sh "mvn ${MAVEN_ARGS}"
-        }
+        	}
        }
     }
      
