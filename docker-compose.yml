@@ -2,26 +2,16 @@ version: '3.8'
 
 services: 
   api:
-    container_name: access
-    build:
-      context: ./
-      target: dev
-    image: access-api
-    depends_on:
-      - db
+    build: .
     ports:
-      - 3000:3000
+      - '8090:8090'
+    container_name: bookapi
     environment:
-      NODE_ENV: dev
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: QUINIELAS
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/QUINIELAS?jdbcCompliantTruncation=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
     links:
-      - db
-    volumes:
-      - ./:/src      
+      - 'db:database'      
   db:
     image: mysql:8.0
     cap_add:
