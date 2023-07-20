@@ -6,7 +6,7 @@ services:
       - '8090:8090'
     container_name: bookapi
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/QUINIELAS?jdbcCompliantTruncation=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306?jdbcCompliantTruncation=false
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     links:
