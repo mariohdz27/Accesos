@@ -2,22 +2,22 @@ pipeline {
     agent any
     tools {
         jdk "java 17"
-    }  
+    }	
   environment {
     MAVEN_ARGS=" -e clean install"
     registry = ""
-    dockerContainerName = 'access'
-    dockerImageName = 'access-api'
+    dockerContainerName = 'access-api'
+    dockerImageName = 'access'
   }
   stages {
     stage('Build') {
        steps {
-   withMaven(maven: 'MAVEN_ENV') {
+	withMaven(maven: 'MAVEN_ENV') {
             sh "mvn ${MAVEN_ARGS}"
         }
        }
     }
-     
+	  
  stage('clean container') {
       steps {
        sh 'docker ps -f name=${dockerContainerName} -q | xargs --no-run-if-empty docker container stop'
