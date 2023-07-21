@@ -1,13 +1,10 @@
-supportMail: mariohdzglez@gmail.com
-AESFront: chesco0000000000
-AESDecryptBack : Chofis12
-AESEncryptBack : Betza20
-
 spring:
+  profiles:
+    active: docker
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     
-    url: jdbc:mysql://localhost:3306/QUINIELAS?jdbcCompliantTruncation=false
+    url: jdbc:mysql://mysql:3306/QUINIELAS?jdbcCompliantTruncation=false
     username: root
     password: root
   jpa:
@@ -19,7 +16,4 @@ server:
     context-path: /accesos/api
   error:
     include-stacktrace: never
-    
-        
-    
     
