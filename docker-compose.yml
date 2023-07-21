@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      quinieslas-network:  
+    volumes:
+      - db-data:/var/lib/mysql/data
+    ports:
+      - 3306:3306
   api:
     build: .
     ports:
@@ -11,21 +22,12 @@ services:
       - PORT=3306
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+       - db  
     networks:
       quinieslas-network:  
     links:
       - 'db:database'
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    networks:
-      quinieslas-network:  
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    ports:
-      - 3306:3306
 volumes:
   db-data:
     driver: local
