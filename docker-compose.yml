@@ -6,7 +6,7 @@ services:
     ports:
       - '8090:8090'
     networks:
-      - quinielas-mysql
+      - quinielas-network
     container_name: access
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/QUINIELAS?jdbcCompliantTruncation=false
@@ -29,5 +29,5 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     restart: unless-stopped
 networks:
-  quinielas-mysql:
+  quinielas-network:
        

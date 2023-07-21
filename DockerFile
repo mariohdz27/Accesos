@@ -1,5 +1,4 @@
 
 FROM openjdk:17-alpine
-
 copy ./target/MS_ACCESOS-0.0.1-SNAPSHOT.jar MS_ACCESOS-0.0.1-SNAPSHOT.jar
-CMD ["java","-jar","employee-jdbc-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-jar","MS_ACCESOS-0.0.1-SNAPSHOT.jar"]
