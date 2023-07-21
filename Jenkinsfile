@@ -1,5 +1,8 @@
 pipeline {
-    agent any  
+    agent any
+    tools {
+        jdk "java 17"
+    }  
   environment {
     MAVEN_ARGS=" -e clean install"
     registry = ""
