@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Build') {
        steps {
-   withMaven(maven: 'mvn') {
+   withMaven(maven: 'MAVEN_ENV') {
             sh "mvn ${MAVEN_ARGS}"
         }
        }
