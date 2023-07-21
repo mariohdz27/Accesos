@@ -30,4 +30,5 @@ services:
     restart: unless-stopped
 networks:
   quinielas-mysql:
+    driver: bridge
        
