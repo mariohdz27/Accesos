@@ -6,8 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-    networks:
-      quinieslas-network:  
+    network_mode: "host"
     volumes:
       - db-data:/var/lib/mysql/data
     ports:
@@ -24,8 +23,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=root
     depends_on:
        - db  
-    networks:
-      quinieslas-network:  
+    network_mode: "host" 
     links:
       - 'db:database'
 volumes:
