@@ -2,33 +2,42 @@ pipeline {
     agent any
     tools {
         jdk "java 17"
-    }	
-  environment {
-    MAVEN_ARGS=" -e clean install"
-    registry = ""
-    dockerContainerName = 'access-api'
-    dockerImageName = 'access'
-  }
-  stages {
-    stage('Build') {
-       steps {
-	withMaven(maven: 'MAVEN_ENV') {
-            sh "mvn ${MAVEN_ARGS}"
+    }
+
+    stages {
+     
+        stage('Construir Proyecto') {
+            steps {
+                // Aquí puedes especificar los comandos de construcción del proyecto Spring
+                // Por ejemplo, para Maven:
+                sh 'mvn clean package'
+            }
         }
-       }
+
+
+        stage('creando imagen ') {
+            steps {
+                // Agregar aquí los comandos para desplegar el proyecto en el servidor de aplicaciones
+                // Por ejemplo, para desplegar en Tomcat:
+                sh 'docker build -t backend .'
+            }
+        }
+        stage('ejecuntando docker-compose ') {
+            steps {
+                // Agregar aquí los comandos para desplegar el proyecto en el servidor de aplicaciones
+                // Por ejemplo, para desplegar en Tomcat:
+                sh 'docker-compose up -d'
+            }
+        }
     }
-	  
- stage('clean container') {
-      steps {
-       sh 'docker ps -f name=${dockerContainerName} -q | xargs --no-run-if-empty docker container stop'
-       sh 'docker container ls -a -fname=${dockerContainerName} -q | xargs -r docker container rm'
-       sh 'docker images -q --filter=reference=${dockerImageName} | xargs --no-run-if-empty docker rmi -f'
-      }
+
+    post {
+        // Acciones que se ejecutarán después de la ejecución de las etapas
+        success {
+            echo 'El despliegue fue exitoso. ¡Felicidades!'
+        }
+        failure {
+            echo 'El despliegue falló. Revise los registros para más información.'
+        }
     }
-  stage('docker-compose start') {
-      steps {
-       sh 'docker compose up -d'
-      }
-    }
-  }
 }
