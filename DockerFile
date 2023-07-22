@@ -4,8 +4,8 @@ https://medium.com/geekculture/dockerizing-a-spring-boot-application-with-maven-
 
 
 
-FROM jenkins/jenkins:lts
-USER root
+FROM jenkins/jenkins:lts-jdk11
+USER jenkins
 RUN apt-get update
 RUN curl -sSL https://get.docker.com/ | sh
 
