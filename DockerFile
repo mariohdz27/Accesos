@@ -1,4 +1,4 @@
 FROM openjdk:17-alpine
 ADD target/MS_ACCESOS-0.0.1-SNAPSHOT.jar MS_ACCESOS
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "MS_ACCESOS"]
