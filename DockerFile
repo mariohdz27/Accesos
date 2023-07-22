@@ -3,6 +3,12 @@ https://medium.com/geekculture/dockerizing-a-spring-boot-application-with-maven-
 # it has been modified slightly for my use case.
 
 
+
+FROM jenkins/jenkins:lts
+USER root
+RUN apt-get update
+RUN curl -sSL https://get.docker.com/ | sh
+
 # AS <NAME> to name this stage as maven
 FROM maven:3.6.3 AS maven
 
