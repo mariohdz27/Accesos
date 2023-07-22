@@ -8,22 +8,23 @@ pipeline {
     MAVEN_ARGS=" -e clean install"
 
   }
+
   triggers {
     pollSCM('* * * * *')
   }
   stages {  	  
-  
-    stage('Docker  build') {
-      steps {
-            echo '----------------- This is a docker-compose phase ----------'
-            sh 'docker build -t backend .'
-        }
-    }
-    stage('Docker compose ') {
-      steps {
-            echo '----------------- This is a docker-compose phase ----------'
-            sh 'docker-compose up -d'
-        }
-    }
+	stage{
+	    step{
+	        docker.withTool('docker'){
+    		docker.withRegistry('repo','credentials') { 
+    		     echo '----------------- This is a docker-compose phase ----------'
+            	sh 'docker-compose up -d'
+    		
+    		}
+		}
+	        
+	    }
+
+	}
   }
 }
