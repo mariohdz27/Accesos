@@ -5,14 +5,19 @@ pipeline {
     }	
   environment {
     MAVEN_ARGS=" -e clean install"
-    registry = ""
-    dockerContainerName = 'myapp-main'
-    dockerImageName = 'backend'
+
   }
   triggers {
     pollSCM('* * * * *')
   }
   stages {
+  	 stage('Build maven') {
+       steps {
+	withMaven(maven: 'MAVEN_ENV') {
+            sh "mvn ${MAVEN_ARGS}"
+        }
+       }
+    } 
     stage('Docker  build') {
       steps {
             echo '----------------- This is a docker build phase ----------'
