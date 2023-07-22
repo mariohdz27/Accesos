@@ -18,16 +18,10 @@ pipeline {
         }
        }
     } 
-    stage('Docker  build') {
-      steps {
-            echo '----------------- This is a docker build phase ----------'
-            sh 'docker build -t backend .'
-        }
-    }
     stage('Docker compose build') {
       steps {
             echo '----------------- This is a docker-compose phase ----------'
-            sh 'docker-compose up -d'
+            sh 'docker-compose up -d --force-recreate --remove-orphans --build myapp-main'
         }
     }
   }
