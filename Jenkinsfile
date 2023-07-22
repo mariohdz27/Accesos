@@ -10,12 +10,17 @@ pipeline {
   triggers {
     pollSCM('* * * * *')
   }
-  stages {
-  	  
+  stages {  	  
     stage('Docker compose build') {
       steps {
             echo '----------------- This is a docker-compose phase ----------'
-            sh 'docker-compose up -d --force-recreate --remove-orphans --build myapp-main'
+            sh 'docker build -t backend .'
+        }
+    }
+    stage('Docker compose build') {
+      steps {
+            echo '----------------- This is a docker-compose phase ----------'
+            sh 'docker-compose up -d'
         }
     }
   }
