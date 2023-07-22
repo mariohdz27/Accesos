@@ -23,12 +23,11 @@ services:
     depends_on:
       - mysqldb1
     ports:
-      - 8080:8080
+      - 8010:8010
     environment:
       - DATABASE_HOST=mysqldb1
       - DATABASE_USER=mario
       - DATABASE_PASSWORD=root
-      - DATABASE_NAME=QUINIELAS
       - DATABASE_PORT=3306
    
 networks:
