@@ -16,11 +16,15 @@ pipeline {
             echo '-----------------Imagen de jenkins ----------'
             sh 'docker build -t root/jenkins .'
         }
+    }
+    stage('Prueba'){
+        
         steps {
             echo '----------------- This is a docker-compose phase ----------'
             sh 'docker run -d -p8080:8080 -v /var/run/docker.sock:/var/run/docker.sock su nombre de root/jenkins .'
         }
     }
+
    
     stage('Docker  build') {
       steps {
