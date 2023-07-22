@@ -11,13 +11,7 @@ pipeline {
     pollSCM('* * * * *')
   }
   stages {
-  	 stage('Build maven') {
-       steps {
-	withMaven(maven: 'MAVEN_ENV') {
-            sh "mvn ${MAVEN_ARGS}"
-        }
-       }
-    } 
+  	  
     stage('Docker compose build') {
       steps {
             echo '----------------- This is a docker-compose phase ----------'
