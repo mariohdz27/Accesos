@@ -11,13 +11,13 @@ pipeline {
     pollSCM('* * * * *')
   }
   stages {  	  
-    stage('Docker compose build') {
+    stage('Docker  build') {
       steps {
             echo '----------------- This is a docker-compose phase ----------'
             sh 'docker build -t backend .'
         }
     }
-    stage('Docker compose build') {
+    stage('Docker compose ') {
       steps {
             echo '----------------- This is a docker-compose phase ----------'
             sh 'docker-compose up -d'
