@@ -1,31 +1,35 @@
-version: '3.8'
+version: '3'
 
 services:
-  db:
-    image: mysql:5.7
-    restart: always
+  mysqldb1:
+    image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: root
-    network_mode: "host"
-    volumes:
-      - db-data:/var/lib/mysql/data
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=QUINIELAS
+      - MYSQL_USER=mario
+      - MYSQL_PASSWORD=root
     ports:
       - 3306:3306
-  api:
-    build: .
-    ports:
-      - '8090:8090'
-    container_name: access-api
-    environment:
-      - MYSQL_HOST=db
-      - PORT=3306
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=root
+    volumes:
+      - /home/hans/Escritorio/git_proyect/bd_spring_docker:/var/lib/mysql
+    networks:
+      - access-mysql
+      
+  myapp-main:
+    image: backend
+    networks:
+      - access-mysql
+    restart: on-failure
     depends_on:
-       - db  
-    network_mode: "host" 
-    links:
-      - 'db:database'
-volumes:
-  db-data:
-    driver: local
+      - mysqldb1
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=mysqldb1
+      - DATABASE_USER=mario
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=QUINIELAS
+      - DATABASE_PORT=3306
+   
+networks:
+  access-mysql: 

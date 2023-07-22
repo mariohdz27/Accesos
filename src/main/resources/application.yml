@@ -6,20 +6,15 @@ AESEncryptBack : Betza20
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:root}
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${PORT:3306}/QUINIELAS?jdbcCompliantTruncation=false 
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:root}
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:3306/QUINIELAS?jdbcCompliantTruncation=false 
   jpa:
     hibernate.ddl-auto: update 
     generate-ddl: true
     show-sql: true
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
 server:
   servlet:
     context-path: /accesos/api
   error:
     include-stacktrace: never
-    
-        
-    
-    
