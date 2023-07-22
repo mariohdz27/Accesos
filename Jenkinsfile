@@ -9,26 +9,21 @@ pipeline {
     dockerContainerName = 'myapp-main'
     dockerImageName = 'backend'
   }
+  triggers {
+    pollSCM('* * * * *')
+  }
   stages {
-    stage('Build') {
-       steps {
-	withMaven(maven: 'MAVEN_ENV') {
-            sh "mvn ${MAVEN_ARGS}"
+    stage('Docker  build') {
+      steps {
+            echo '----------------- This is a docker build phase ----------'
+            sh 'docker build -t backend .'
         }
-       }
     }
-	  
- stage('clean container') {
+    stage('Docker compose build') {
       steps {
-       sh 'docker ps -f name=${dockerContainerName} -q | xargs --no-run-if-empty docker container stop'
-       sh 'docker container ls -a -fname=${dockerContainerName} -q | xargs -r docker container rm'
-       sh 'docker images -q --filter=reference=${dockerImageName} | xargs --no-run-if-empty docker rmi -f'
-      }
-    }
-  stage('docker-compose start') {
-      steps {
-       sh 'docker compose up -d'
-      }
+            echo '----------------- This is a docker-compose phase ----------'
+            sh 'docker-compose up -d'
+        }
     }
   }
 }
