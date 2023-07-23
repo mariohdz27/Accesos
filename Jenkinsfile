@@ -6,7 +6,7 @@ pipeline {
         stage('Test') {
             steps {
                 docker.withTool('docker'){
-    docker.withRegistry('repo','credentials') { 
+   			 docker.withRegistry { 
          	sh 'docker -v'    
 		    }
 		}
