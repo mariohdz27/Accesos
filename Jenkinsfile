@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-    docker.withRegistry('repo','credentials') { 
+    docker.withRegistry('https://docker.mycorp.com/') { 
          	sh 'node --version'    
 		    
 		}
