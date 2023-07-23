@@ -16,7 +16,7 @@ pipeline {
       steps {
       script {
           docker.withRegistry('https://docker.mycorp.com/') { 
-    	  	sh 'docker run -i -t ubuntu /bin/bash'
+    	  	sh 'docker run -i -t ubuntu'
     	  	sh 'docker build -t backend .'
     	  	sh 'docker-compose up -d'
           }
