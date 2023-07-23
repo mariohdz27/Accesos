@@ -1,30 +1,18 @@
 pipeline {
     agent any
     tools {
-        jdk "java 17"
-         'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+        jdk "java 17",
+            'org.jenkinsci.plugins.docker.commons.tools.DockerTool' '18.09'
+
     }	
   environment {
-    MAVEN_ARGS=" -e clean install"
-
+    DOCKER_CERT_PATH = credentials('id-for-a-docker-cred')
   }
-
-  triggers {
-    pollSCM('* * * * *')
-  }
-  stages {  	  
-	stage{
-	    step{
-	        docker.withTool('docker'){
-    		docker.withRegistry('repo','credentials') { 
-    		     echo '----------------- This is a docker-compose phase ----------'
-            	sh 'docker-compose up -d'
-    		
-    		}
-		}
-	        
-	    }
-
-	}
+  stages {
+    stage('foo') {
+      steps {
+        sh "docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
+      }
+    }
   }
 }
