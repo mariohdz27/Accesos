@@ -6,10 +6,13 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-    docker.withRegistry('https://docker.mycorp.com/') { 
-         	sh 'node --version'    
+            	script {
+	            docker.withRegistry('https://docker.mycorp.com/') { 
+         			sh 'node --version'    
 		    
-		}
+				}    
+	            }
+    			
             }
         }
     }
