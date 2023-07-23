@@ -1,13 +1,11 @@
 pipeline {
-	tools {
-	    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
-	}
+    agent {
+        docker { image 'node:18.16.0-alpine' }
+    }
     stages {
         stage('Test') {
             steps {
-                docker.withTool('docker'){
-         	sh 'docker -v'    	    
-		}
+                sh 'node --version'
             }
         }
     }
