@@ -8,7 +8,7 @@ pipeline {
             steps {
             	script {
 	            docker.withRegistry('https://docker.mycorp.com/') { 
-         			sh 'node --version'    
+         			sh 'docker -v'    
 		    
 				}    
 	            }
