@@ -15,10 +15,9 @@ pipeline {
  	stage('clean container') {
       steps {
       script {
-          docker.withRegistry('https://docker.mycorp.com/') { 
-    	  	sh 'docker run ubuntu'
-    	  	sh 'docker build -t backend .'
-    	  	sh 'docker-compose up -d'
+          docker.withRegistry('https://docker.mycorp.com/') {     	  	
+    	  	bat 'docker build -t backend .'
+    	  	bat 'docker-compose up -d'
           }
       }
       
