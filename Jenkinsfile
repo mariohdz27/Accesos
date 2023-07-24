@@ -16,8 +16,8 @@ pipeline {
       steps {
       script {
           docker.withRegistry('https://docker.mycorp.com/') {     	  	
-    	  	sh 'docker build -t backend .'
-    	  	sh 'docker-compose up -d'
+    	  	bat 'docker build -t backend .'
+    	  	bat 'docker-compose up -d'
           }
       }
       
