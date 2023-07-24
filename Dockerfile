@@ -1,11 +1,10 @@
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:lts-jdk17
 USER jenkins
 RUN apt-get update
 RUN curl -sSL https://get.docker.com/ | sh
 
 # AS <NAME> to name this stage as maven
 FROM maven:3.6.3 AS maven
-
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 EXPOSE 8010
 EXPOSE 3306
@@ -16,7 +15,6 @@ COPY . /usr/src/app
 
 # Compile and package the application to an executable JAR
 RUN mvn package -DskipTests
-
 RUN echo "running in root"
 RUN ls 
 RUN echo "running in /usr/src/app"
