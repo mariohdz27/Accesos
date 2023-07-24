@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts-jdk17
+FROM jenkins/jenkins:lts-jdk11
 USER jenkins
 RUN apt-get update
 RUN curl -sSL https://get.docker.com/ | sh
@@ -14,7 +14,7 @@ COPY . /usr/src/app
 
 
 # Compile and package the application to an executable JAR
-RUN mvn package -DskipTests
+RUN mvn package -X -DskipTests
 RUN echo "running in root"
 RUN ls 
 RUN echo "running in /usr/src/app"
