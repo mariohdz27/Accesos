@@ -14,7 +14,7 @@ COPY . /usr/src/app
 
 
 # Compile and package the application to an executable JAR
-RUN mvn package -X -DskipTests
+RUN mvn clean package -X -DskipTests
 RUN echo "running in root"
 RUN ls 
 RUN echo "running in /usr/src/app"
