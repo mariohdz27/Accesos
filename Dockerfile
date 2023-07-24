@@ -1,9 +1,3 @@
-# code below is from medium tutorial by Wynn Teo, 
-https://medium.com/geekculture/dockerizing-a-spring-boot-application-with-maven-122286e9f582
-# it has been modified slightly for my use case.
-
-
-
 FROM jenkins/jenkins:lts-jdk11
 USER jenkins
 RUN apt-get update
