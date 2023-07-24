@@ -17,6 +17,7 @@ pipeline {
       script {
           docker.withRegistry('https://docker.mycorp.com/') {     	  	
     	  	sh 'java -version'
+    	  	sh 'javac -version'
     	  	sh 'docker build -t backend .'
     	  	sh 'docker-compose up -d'
           }
