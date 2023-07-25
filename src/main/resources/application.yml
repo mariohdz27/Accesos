@@ -3,6 +3,9 @@ AESFront: chesco0000000000
 AESDecryptBack : Chofis12
 AESEncryptBack : Betza20
 
+server:
+  port: 8010
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
