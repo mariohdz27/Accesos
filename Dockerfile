@@ -28,4 +28,4 @@ ARG JAR_FILE=MS_ACCESOS-0.0.1-SNAPSHOT.jar
 WORKDIR /opt/app
 # Copy the foodbox-service-rest-0.0.1-SNAPSHOT.jar from the maven stage to the /opt/app directory of the current stage.
 COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
-ENTRYPOINT ["java", "-jar", "MS_ACCESOS"]
+ENTRYPOINT ["java", "-jar", "MS_ACCESOS-0.0.1-SNAPSHOT"]
