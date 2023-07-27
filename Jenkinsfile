@@ -21,7 +21,7 @@ pipeline {
       	}
       }
     }
-    stage('limpiando image') {
+    stage('limpiando imagen') {
       steps {
       script {
           docker.withRegistry('https://docker.mycorp.com/') {   
