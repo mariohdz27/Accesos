@@ -6,8 +6,6 @@ RUN curl -sSL https://get.docker.com/ | sh
 # AS <NAME> to name this stage as maven
 FROM maven:3.9.3 AS maven
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-EXPOSE 8010
-EXPOSE 3306
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
