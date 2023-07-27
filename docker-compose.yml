@@ -11,9 +11,9 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/hans/Escritorio/git_proyect/bd_spring_docker:/var/lib/mysql        
+      - /home/Escritorio/bd_spring_docker:/var/lib/mysql        
   myapp-main:
-    image: backend
+    image: ms_access
     restart: on-failure
     depends_on:
       - mysqldb1
