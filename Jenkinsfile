@@ -16,7 +16,7 @@ pipeline {
       script {
           docker.withRegistry('https://docker.mycorp.com/') {   
     	  	sh ' docker container stop  ${DOCKER_CONTAINER} || (echo "Contenedor ${DOCKER_CONTAINER} no puede ser detenido"; exit 0)'
-    	  	sh ' docker rm -f ${DOCKER_CONTAINER} || (echo "Contenedor ${DOCKER_CONTAINER} no puede ser removido"; exit 0)'
+    	  	sh ' docker container rm -f ${DOCKER_CONTAINER} || (echo "Contenedor ${DOCKER_CONTAINER} no puede ser removido"; exit 0)'
           }
       	}
       }
@@ -25,7 +25,7 @@ pipeline {
       steps {
       script {
           docker.withRegistry('https://docker.mycorp.com/') {   
-    	  	sh 'docker image rm ${DOCKER_IMAGE} || (echo "Imagen ${DOCKER_IMAGE} no puedes ser removida"; exit 0)'
+    	  	sh 'docker rmi $(docker images ${DOCKER_IMAGE}) || (echo "Imagen ${DOCKER_IMAGE} no puedes ser removida"; exit 0)'
           }
       	}
       }
